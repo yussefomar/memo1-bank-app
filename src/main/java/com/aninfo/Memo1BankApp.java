@@ -58,13 +58,13 @@ public class Memo1BankApp {
 		return ResponseEntity.of(accountOptional);
 	}
 
-	@GetMapping("/transaccioness/{idTransaccion}")
+	@GetMapping("/transacciones/{idTransaccion}")
 	public ResponseEntity<Transaccion> getTransaccion(@PathVariable Long idTransaccion){
 		Optional<Transaccion> transaccionOptional= Optional.ofNullable(transaccionService.findByidTransaccion(idTransaccion));
 		return ResponseEntity.of(transaccionOptional);
 	}
 
-	@GetMapping("/transacciones/{cbu}")
+	@GetMapping("/transaccionesPorCuenta/{cbu}")
 	public ResponseEntity<Collection<Transaccion>> getTransacciones(@PathVariable Long cbu) {
 		Optional<Account> accountOptional = accountService.findById(cbu);
 		if (!accountOptional.isPresent()) {
@@ -90,6 +90,11 @@ public class Memo1BankApp {
 	@DeleteMapping("/accounts/{cbu}")
 	public void deleteAccount(@PathVariable Long cbu) {
 		accountService.deleteById(cbu);
+	}
+
+	@DeleteMapping("/transaccion/{idTransaccion}")
+	public void deleteTransaccion(@PathVariable Long idTransaccion) {
+		transaccionService.deleteById(idTransaccion);
 	}
 
 	@PutMapping("/accounts/{cbu}/withdraw")
