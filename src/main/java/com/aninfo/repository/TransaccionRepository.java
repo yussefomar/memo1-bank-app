@@ -18,4 +18,5 @@ public interface TransaccionRepository extends CrudRepository<Transaccion, Long>
     @Override
     List<Transaccion> findAll();
 
+    void deleteAllByAccount(Optional<Account> cbu);
 }

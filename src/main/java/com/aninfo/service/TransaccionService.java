@@ -5,7 +5,7 @@ import com.aninfo.model.Transaccion;
 import com.aninfo.repository.TransaccionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import javax.transaction.Transactional;
 import java.util.Collection;
 import java.util.Optional;
 
@@ -33,6 +33,11 @@ public class TransaccionService {
 
     public void deleteById(Long transaccion) {
         transaccionRepository.deleteById(transaccion);
+    }
+    @Transactional
+    public void deleteAllByAccount(Optional<Account> account) {
+
+        transaccionRepository.deleteAllByAccount(account);
     }
 
 
