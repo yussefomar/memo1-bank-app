@@ -35,11 +35,11 @@ public class TransaccionService {
         transaccionRepository.deleteById(transaccion);
     }
 
-    /*public Transaccion findTransaccionByAccount(Long cbu) {
-        return transaccionRepository.findTransaccionByaccount(cbu);
-    }*/
 
 
+    public Transaccion findByidTransaccion(Long idTransaccion){
+        return transaccionRepository.findByidTransaccion(idTransaccion);
+    }
     public Collection<Transaccion> findTransaccionByAccount(Optional<Account> accountOptional) {
         return transaccionRepository.findAllByaccount(accountOptional);
     }

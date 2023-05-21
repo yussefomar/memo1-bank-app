@@ -58,6 +58,12 @@ public class Memo1BankApp {
 		return ResponseEntity.of(accountOptional);
 	}
 
+	@GetMapping("/transaccioness/{idTransaccion}")
+	public ResponseEntity<Transaccion> getTransaccion(@PathVariable Long idTransaccion){
+		Optional<Transaccion> transaccionOptional= Optional.ofNullable(transaccionService.findByidTransaccion(idTransaccion));
+		return ResponseEntity.of(transaccionOptional);
+	}
+
 	@GetMapping("/transacciones/{cbu}")
 	public ResponseEntity<Collection<Transaccion>> getTransacciones(@PathVariable Long cbu) {
 		Optional<Account> accountOptional = accountService.findById(cbu);

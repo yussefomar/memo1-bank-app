@@ -13,6 +13,7 @@ import java.util.Optional;
 public interface TransaccionRepository extends CrudRepository<Transaccion, Long> {
 
     Transaccion findAccountByidTransaccion(Long cbu);
+    Transaccion findByidTransaccion(Long idTransaccion);
     Collection<Transaccion> findAllByaccount(Optional<Account> cbu);
     @Override
     List<Transaccion> findAll();
