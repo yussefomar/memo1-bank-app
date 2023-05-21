@@ -1,7 +1,9 @@
 package com.aninfo;
 
 import com.aninfo.model.Account;
+import com.aninfo.model.Transaccion;
 import com.aninfo.service.AccountService;
+import com.aninfo.service.TransaccionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -26,6 +28,8 @@ public class Memo1BankApp {
 
 	@Autowired
 	private AccountService accountService;
+	@Autowired
+	private TransaccionService transaccionService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(Memo1BankApp.class, args);
@@ -35,6 +39,12 @@ public class Memo1BankApp {
 	@ResponseStatus(HttpStatus.CREATED)
 	public Account createAccount(@RequestBody Account account) {
 		return accountService.createAccount(account);
+	}
+
+	@PostMapping("/transacciones")
+	@ResponseStatus(HttpStatus.CREATED)
+	public Transaccion createAccount(@RequestBody Transaccion transaccion) {
+		return transaccionService.createTransaccion(transaccion);
 	}
 
 	@GetMapping("/accounts")

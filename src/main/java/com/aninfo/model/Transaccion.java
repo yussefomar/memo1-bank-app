@@ -10,14 +10,15 @@ public class Transaccion {
     @ManyToOne
     private Account account;
 
-    private Double saldoAnterior;
-    private Double saldoPosterior;
+    private Double saldoAnterior= (double) 0;
+    private Double saldoPosterior= (double) 0;
+    private String tipo;
 
-    public Transaccion(Account account,Long idTransaccion,Double saldoAnterior,Double saldoPosterior){
-        this.account=account;
+    public Transaccion(){
+        /*this.account=account;
         this.idTransaccion=idTransaccion;
         this.saldoAnterior=saldoAnterior;
-        this.saldoPosterior=saldoPosterior;
+        this.saldoPosterior=saldoPosterior;*/
     }
 
     public Account getAccount(){
@@ -38,6 +39,13 @@ public class Transaccion {
         this.idTransaccion = idTransaccion;
     }
 
+    public void setTipo(String tipo){
+        this.tipo=tipo;
+    }
+
+    public String getTipo(){
+        return this.tipo;
+    }
     public Double getsaldoAnterior() {
         return saldoAnterior;
     }
