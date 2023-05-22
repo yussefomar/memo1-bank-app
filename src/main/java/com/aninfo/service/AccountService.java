@@ -50,6 +50,9 @@ public class AccountService {
          transaccionRepository.save(unaTransaccion);
      }
     public void deleteById(Long cbu) {
+        Optional<Account> accountOptional  = accountRepository.findById(cbu);
+
+        transaccionRepository.deleteAllByAccount(accountOptional);
         accountRepository.deleteById(cbu);
     }
 
@@ -70,7 +73,17 @@ public class AccountService {
 
         return account;
     }
+    @Transactional
+    public double getPromo(Double sum){
+        double promo=sum*0.1;
+        if(sum>=2000 && promo<=500){
+            return sum+ promo;
+        }else if (sum>=2000 && promo>500){
+            return sum + 500;
 
+        }
+        return sum;
+    }
     @Transactional
     public Account deposit(Long cbu, Double sum) {
 
@@ -83,9 +96,10 @@ public class AccountService {
         Account account = accountRepository.findAccountByCbu(cbu);
 
         Double saldoAnterior=account.getBalance();
-        Double saldoPosterior=  account.getBalance() +sum    ;
+        Double promo=this.getPromo(sum );
+        Double saldoPosterior=   account.getBalance() + promo  ;
 
-        account.setBalance(account.getBalance() + sum);
+        account.setBalance(account.getBalance() +  promo );
         accountRepository.save(account);
         this.saveTransaccion(saldoAnterior,saldoPosterior,account,"depositar");
 

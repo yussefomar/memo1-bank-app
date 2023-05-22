@@ -52,6 +52,7 @@ public class AccountOperationsTest extends AccountIntegrationServiceTest {
         assertEquals(Double.valueOf(balance), account.getBalance());
     }
 
+
     @Then("^Operation should be denied due to insufficient funds$")
     public void operation_should_be_denied_due_to_insufficient_funds() {
         assertNotNull(ife);

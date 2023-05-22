@@ -89,9 +89,7 @@ public class Memo1BankApp {
 
 	@DeleteMapping("/accounts/{cbu}")
 	public void deleteAccount(@PathVariable Long cbu) {
-		Optional<Account> accountOptional  = accountService.findById(cbu);
 
-		transaccionService.deleteAllByAccount(accountOptional);
 		accountService.deleteById(cbu);
 	}
 
